@@ -2,7 +2,6 @@ import axios from "axios";
 
 
 function handleErrors(err, action, next) {
-    console.log('handleErrors');
     next({
         type: `${action.type}_FAILED`,
         payload:
@@ -16,7 +15,6 @@ function handleErrors(err, action, next) {
 }
 
 function handleResponse(res, action, next) {
-    console.log('handleResponse');
     if (res.status === 200) {
         next({
             type: `${action.type}_COMPLETED`,
@@ -35,7 +33,6 @@ export const clientRequest = ({ getState }) => next => action => {
     if (!action.meta || !action.meta.async) {
         return result;
     }
-    console.log('clientRequest', action);
 
     const { url, method = 'GET', data } = action.meta;
 

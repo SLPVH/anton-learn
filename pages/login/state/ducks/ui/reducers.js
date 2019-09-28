@@ -10,7 +10,6 @@ const initialState = {
 };
 
 export default function ui(state = initialState, action) {
-    console.log(action);
     switch (action.type) {
         case REQUEST_IS_SEND:
             return { ...state, sending: true };
