@@ -9,8 +9,15 @@
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "clsx": "latest",
-    "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "kcors": "^2.2.2",
+    "koa": "^2.8.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-favicon": "^2.0.1",
+    "koa-jwt": "^3.6.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^7.4.0",
+    "koa-unless": "^1.0.7",
     "next": "latest",
     "prop-types": "latest",
     "react": "^16.9.0",
@@ -18,11 +25,22 @@
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "rimraf": "^3.0.0"
   },
   "scripts": {
-    "dev": "node server/index.js",
-    "build": "next build",
-    "start": "next start"
+    "start": "npm run prod",
+    "server": "babel-node ./source/index.js",
+    "server:prod": "node ./dist/index.js",
+    "dev": "NODE_ENV=development npm run server",
+    "clean": "rimraf dist",
+    "build": "babel ./source --out-dir dist",
+    "prod": "NODE_ENV=production npm run clean build server:prod"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
+    "@babel/preset-env": "^7.6.2"
   }
 }
