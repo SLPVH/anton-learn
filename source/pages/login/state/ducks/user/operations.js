@@ -1,3 +1,6 @@
+import { Cookies } from 'react-cookie';
+const cookies = new Cookies();
+
 import { loginUpdated, passwordUpdated, saveUser } from "./actions";
 import {
     requestIsCompletedOperation,
@@ -26,12 +29,14 @@ export const saveUserOperation = () => (dispatch, getState) => {
     }
 
     dispatch(saveUser(login, password))
-        .then(() => {
+        .then((user) => {
             dispatch(requestIsCompletedOperation());
             // save token and redirecting
+            cookies.set('jwtToken', user.token);
+            window.location.href = '/profile';
         })
-        .catch(() => {
+        .catch(({ status }) => {
             dispatch(requestIsCompletedOperation());
-            dispatch(updateErrorMessageOperation("Login already exists"));
+            dispatch(updateErrorMessageOperation("Login already exists or invalid password"));
         });
 };

@@ -1,4 +1,5 @@
 import Router from "koa-router";
+import { createUserController } from "../controllers/users";
 
 const router = new Router();
 
@@ -12,8 +13,16 @@ router
         await next();
     })
     .post("/user", async (ctx, next) => {
-        // TODO create token and generate spl address
-        // TODO create and save toke
+        const { token } = await createUserController(
+            ctx.models.usersModel,
+            ctx.request.body.login,
+            ctx.request.body.password
+        );
+        ctx.body =  { token };
+        await next();
+    })
+    .get("/profile", async (ctx, next) => {
+        await ctx.nextJSHandler(ctx.req, ctx.res);
         await next();
     })
     .all(nextJSRouterPaths, async ctx => {

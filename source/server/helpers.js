@@ -1,15 +1,9 @@
 import jwt from 'jsonwebtoken';
-import config from './config';
+import { jwtSecret } from "./config";
 
 
-const sign = (payload, params) => {
-    const jwtid = uuid();
-    const token = jwt.sign(payload, config.jwtSecret, { jwtid, expiresIn, ...params });
+export const jwtSign = (payload, params = {}) => {
+    const token = jwt.sign(payload, jwtSecret, { expiresIn: '30d', ...params });
     const decodedToken = jwt.decode(token);
-
     return { token, decodedToken };
-};
-
-export default {
-    sign,
 };

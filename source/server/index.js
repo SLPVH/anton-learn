@@ -10,6 +10,7 @@ import koaFavicon from "koa-favicon";
 
 import { host, isProduction, jwtSecret, port } from "./config";
 import router, { nextJSRouterPaths, publicRoutes } from "./routes";
+import { initDB } from "../db";
 
 export const start = async () => {
     console.log(__dirname);
@@ -23,8 +24,8 @@ export const start = async () => {
     app.use(
         koaJwt({
             secret: jwtSecret,
-            isRevoked: async (ctx, decodedToken, token) => false,
             debug: true,
+            cookie: "jwtToken",
             key: "jwtData"
         }).unless({
             custom: function({ originalUrl }) {
@@ -46,6 +47,13 @@ export const start = async () => {
         dir: `${__dirname}/..`
     });
     await nextApp.prepare();
+
+    const models = await initDB();
+    Object.defineProperty(app.context, "models", {
+        get() {
+            return models;
+        }
+    });
 
     const handle = nextApp.getRequestHandler();
     Object.defineProperty(app.context, "nextJSHandler", {
