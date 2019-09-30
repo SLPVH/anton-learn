@@ -1,7 +1,7 @@
 import {
-    ADD_FREE_POINTS,
+    ADD_FREE_POINTS, LOAD_ALL,
     MAKE_ANSWER,
-    UPDATE_FREE_POINTS_AVAILABLE, UPDATE_WITHDRAWS_AVAILABLE,
+    UPDATE_FREE_POINTS_AVAILABLE, UPDATE_QUESTIONS, UPDATE_WITHDRAWS_AVAILABLE,
     USER_LAST_ZERO_POINTS_DATE_UPDATED,
     USER_SLP_ADDRESS_UPDATED,
     USER_TOTAL_POINTS_UPDATED,
@@ -43,6 +43,13 @@ export function updateWithdrawAvailable(isAvailable) {
     };
 }
 
+export function updateQuestions(questions) {
+    return {
+        type: UPDATE_QUESTIONS,
+        payload: questions
+    };
+}
+
 export function withdraw(slpAddress) {
     return {
         type: WITHDRAW,
@@ -79,6 +86,17 @@ export function makeAnswer(questionId, answerId) {
                 questionId,
                 answerId
             }
+        }
+    };
+}
+
+export function loadAllUserInfo() {
+    return {
+        type: LOAD_ALL,
+        meta: {
+            async: true,
+            url: "/load-all",
+            method: "GET"
         }
     };
 }

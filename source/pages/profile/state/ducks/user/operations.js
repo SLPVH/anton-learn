@@ -1,10 +1,10 @@
 import {
     addFreePoints,
-    lastZeroPointsDateUpdate,
+    lastZeroPointsDateUpdate, loadAllUserInfo,
     makeAnswer,
     slpAddressUpdated,
     totalPointsUpdated,
-    updateFreePointsAvailable, updateWithdrawAvailable,
+    updateFreePointsAvailable, updateQuestions, updateWithdrawAvailable,
     withdraw
 } from "./actions";
 import { requestIsCompletedOperation, requestIsSendOperation, updateErrorMessageOperation } from "../ui";
@@ -64,6 +64,25 @@ export const makeAnswerOperation = (questionId, answerId) => dispatch => {
     dispatch(makeAnswer(questionId, answerId))
         .then(({ points }) => {
             dispatch(totalPointsUpdated(points));
+        })
+        .catch(err => {
+            console.error(err);
+        })
+        .then(() => {
+            dispatch(requestIsCompletedOperation());
+        });
+};
+
+export const updateQuestionsOperation = questions => dispatch =>
+    dispatch(updateQuestions(questions));
+
+export const loadAllUserInfoOperation = () => dispatch => {
+    dispatch(requestIsSendOperation());
+    dispatch(loadAllUserInfo())
+        .then(data => {
+            dispatch(totalPointsUpdated(data.points));
+            dispatch(updateQuestionsOperation(data.questions));
+            dispatch(updateWithdrawAvailable(data.isWithdrawAvailable));
         })
         .catch(err => {
             console.error(err);

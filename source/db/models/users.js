@@ -13,8 +13,8 @@ export class Users {
         const salt = await bcrypt.genSalt(10);
         const passwordHash = await bcrypt.hash(password, salt);
         const { lastId } = await this.db.run(
-            `INSERT INTO users(login, password_hash)
-            VALUES($login, $password_hash)`,
+            `INSERT INTO users(login, password_hash, current_balance)
+            VALUES($login, $password_hash, 3)`,
             { $login: login, $password_hash: passwordHash }
         );
         return {
@@ -43,6 +43,18 @@ export class Users {
 
         return {
             login: row.login
+        };
+    }
+
+    async getUserById(userId) {
+        const row = await this.db.get(
+            `SELECT * FROM users WHERE id = $id`,
+            { $id: userId }
+        );
+        return {
+            login: row.login,
+            points: row.current_balance,
+            slpAddress: row.slp_address
         };
     }
 }

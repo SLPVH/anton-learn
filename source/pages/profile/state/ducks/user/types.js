@@ -6,4 +6,6 @@ export const ADD_FREE_POINTS = 'profile/user/ADD_FREE_POINTS';
 export const MAKE_ANSWER = 'profile/user/MAKE_ANSWER';
 export const UPDATE_FREE_POINTS_AVAILABLE = 'profile/user/UPDATE_FREE_POINTS_AVAILABLE';
 export const UPDATE_WITHDRAWS_AVAILABLE = 'profile/user/UPDATE_WITHDRAWS_AVAILABLE';
+export const LOAD_ALL = 'profile/user/LOAD_ALL';
+export const UPDATE_QUESTIONS = 'profile/user/UPDATE_QUESTIONS';
 
