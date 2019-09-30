@@ -12,11 +12,106 @@ const initialState = {
     is_free_points_available: false,
     is_withdraw_available: false,
     questions: [
-        { id: 1, answers: [1, 2, 3] },
-        { id: 2, answers: [4, 5, 6] },
-        { id: 3, answers: [7, 8, 9] },
-        { id: 4, answers: [10, 11, 12] },
-        { id: 5, answers: [13, 14, 15] },
+        {
+            id: 1,
+            status: 0,
+            title: 'Question Title',
+            content: 'Question content',
+            answers: [
+                {
+                    id: 1,
+                    text: 'Answer text'
+                },
+                {
+                    id: 2,
+                    text: 'Answer text'
+                },
+                {
+                    id: 3,
+                    text: 'Answer text'
+                }
+            ]
+        },
+        {
+            id: 2,
+            status: 0,
+            title: 'Question Title',
+            content: 'Question content',
+            answers: [
+                {
+                    id: 4,
+                    text: 'Answer text'
+                },
+                {
+                    id: 5,
+                    text: 'Answer text'
+                },
+                {
+                    id: 6,
+                    text: 'Answer text'
+                }
+            ]
+        },
+        {
+            id: 3,
+            status: 0,
+            title: 'Question Title',
+            content: 'Question content',
+            answers: [
+                {
+                    id: 7,
+                    text: 'Answer text'
+                },
+                {
+                    id: 8,
+                    text: 'Answer text'
+                },
+                {
+                    id: 9,
+                    text: 'Answer text'
+                }
+            ]
+        },
+        {
+            id: 4,
+            status: 0,
+            title: 'Question Title',
+            content: 'Question content',
+            answers: [
+                {
+                    id: 10,
+                    text: 'Answer text'
+                },
+                {
+                    id: 11,
+                    text: 'Answer text'
+                },
+                {
+                    id: 12,
+                    text: 'Answer text'
+                }
+            ]
+        },
+        {
+            id: 5,
+            status: 0,
+            title: 'Question Title',
+            content: 'Question content',
+            answers: [
+                {
+                    id: 13,
+                    text: 'Answer text'
+                },
+                {
+                    id: 14,
+                    text: 'Answer text'
+                },
+                {
+                    id: 15,
+                    text: 'Answer text'
+                }
+            ]
+        }
     ]
 };
 

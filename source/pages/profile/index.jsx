@@ -19,6 +19,7 @@ import Points from "./components/Points";
 import { Provider } from "react-redux";
 import { configureStore } from "./state/store";
 import FreePointsButtonConnected from "./components/FreePointsButton";
+import QuestionsConnected from "./components/Question";
 
 const drawerWidth = 240;
 
@@ -110,7 +111,7 @@ function QuestionPage() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+    const fixedHeightPaper = clsx(classes.paper);
 
     return (
         <div className={classes.root}>
@@ -168,7 +169,9 @@ function QuestionPage() {
                     <Grid container spacing={3}>
                         {/* Questions */}
                         <Grid item xs={12} md={8} lg={9}>
-                            <Paper className={fixedHeightPaper} />
+                            <Paper className={fixedHeightPaper} >
+                                <QuestionsConnected />
+                            </Paper>
                         </Grid>
                         {/* Points */}
                         <Grid item xs={12} md={4} lg={3}>
