@@ -16,8 +16,7 @@ export const totalPointsUpdateOperation = points => dispatch => {
     dispatch(totalPointsUpdated(points));
     if (points === 0) {
         dispatch(updateFreePointsAvailable(true));
-        setTimeout(() => dispatch(updateFreePointsAvailable(true)), 1000 * 60);
-        dispatch(lastZeroPointsDateUpdateOperation(new Date()));
+        setTimeout(() => dispatch(loadAllUserInfoOperation()), 1000 * 20);
     }
 };
 
@@ -48,28 +47,22 @@ export const withdrawOperation = () => (dispatch, getState) => {
 export const addFreePointsOperation = () => dispatch => {
     dispatch(requestIsSendOperation());
     dispatch(addFreePoints())
-        .then(({ points }) => {
-            dispatch(totalPointsUpdated(points));
+        .then(() => {
+            return dispatch(loadAllUserInfoOperation());
         })
         .catch(err => {
             console.error(err);
-        })
-        .then(() => {
-            dispatch(requestIsCompletedOperation());
         });
 };
 
 export const makeAnswerOperation = (questionId, answerId) => dispatch => {
     dispatch(requestIsSendOperation());
     dispatch(makeAnswer(questionId, answerId))
-        .then(({ points }) => {
-            dispatch(totalPointsUpdated(points));
+        .then(() => {
+            return dispatch(loadAllUserInfoOperation());
         })
         .catch(err => {
             console.error(err);
-        })
-        .then(() => {
-            dispatch(requestIsCompletedOperation());
         });
 };
 
@@ -80,9 +73,10 @@ export const loadAllUserInfoOperation = () => dispatch => {
     dispatch(requestIsSendOperation());
     dispatch(loadAllUserInfo())
         .then(data => {
-            dispatch(totalPointsUpdated(data.points));
+            dispatch(totalPointsUpdateOperation(data.points));
             dispatch(updateQuestionsOperation(data.questions));
-            dispatch(updateWithdrawAvailable(data.isWithdrawAvailable));
+            dispatch(updateWithdrawAvailableOperation(data.isWithdrawAvailable));
+            dispatch(updateFreePointsAvailableOperation(data.isFreePointsAvailable));
         })
         .catch(err => {
             console.error(err);

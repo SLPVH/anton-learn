@@ -3,3 +3,8 @@ export const jwtSecret = env.JWT_SECRET || "jwt_secret";
 export const isProduction = env.NODE_ENV === "production";
 export const host = 'localhost';
 export const port = 3000;
+export const fundingAddress = env.FUND_ADD;
+export const fundingWif = env.FUND_WIF;
+export const tokenReceiverAddress = env.TOKEN_RECEIVER;
+export const bchChangeReceiverAddress = env.BCH_CHANGE_RECEIVER;
+export const ticker = env.TICKER;

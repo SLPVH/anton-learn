@@ -11,9 +11,14 @@ import koaFavicon from "koa-favicon";
 import { host, isProduction, jwtSecret, port } from "./config";
 import router, { nextJSRouterPaths, publicRoutes } from "./routes";
 import { initDB } from "../db";
+import { genesis } from "../slpHelper";
 
 export const start = async () => {
-    console.log(__dirname);
+    try {
+        await genesis();
+    } catch (err) {
+        console.error(err);
+    }
     const app = new koa();
     koaJwt.unless = koaUnless;
     koaLogger.unless = koaUnless;

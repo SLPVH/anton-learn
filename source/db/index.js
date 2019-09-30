@@ -14,42 +14,36 @@ class DB {
 
     async get(sql, params) {
         return new Promise((resolve, reject) => {
-            this.db.serialize(() => {
-                this.db.get(sql, params || [], (err, row) => {
-                    if (err) {
-                        console.error(err);
-                        return reject(err);
-                    }
-                    resolve(row);
-                });
+            this.db.get(sql, params || [], (err, row) => {
+                if (err) {
+                    console.error(err);
+                    return reject(err);
+                }
+                resolve(row);
             });
         });
     }
 
     async all(sql, params) {
         return new Promise((resolve, reject) => {
-            this.db.serialize(() => {
-                this.db.all(sql, params || [], (err, rows) => {
-                    if (err) {
-                        console.error(err);
-                        return reject(err);
-                    }
-                    resolve(rows);
-                });
+            this.db.all(sql, params || [], (err, rows) => {
+                if (err) {
+                    console.error(err);
+                    return reject(err);
+                }
+                resolve(rows);
             });
         });
     }
 
     async run(sql, params) {
         return new Promise((resolve, reject) => {
-            this.db.serialize(() => {
-                this.db.run(sql, params || [], function(err) {
-                    if (err) {
-                        console.error(err);
-                        return reject(err);
-                    }
-                    resolve({ lastId: this.lastID });
-                });
+            this.db.run(sql, params || [], function(err) {
+                if (err) {
+                    console.error(err);
+                    return reject(err);
+                }
+                resolve({ lastId: this.lastID });
             });
         });
     }

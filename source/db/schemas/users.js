@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS users(
 	password_hash	TEXT NOT NULL,
 	slp_address	TEXT,
 	current_balance	INTEGER NOT NULL DEFAULT 0,
+	balance_updated_at TEXT NOT NULL,
 	UNIQUE(login)
 )`;
