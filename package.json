@@ -6,7 +6,7 @@
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.4.3",
     "@material-ui/styles": "^4.4.3",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bcrypt": "^3.0.6",
     "bignumber.js": "^9.0.0",
     "bitbox-sdk": "^8.8.0",
