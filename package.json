@@ -13,7 +13,7 @@
     "body-parser": "^1.19.0",
     "clsx": "latest",
     "highlight.js": "^9.15.10",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "kcors": "^2.2.2",
     "koa": "^2.8.2",
     "koa-bodyparser": "^4.2.1",
